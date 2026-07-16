@@ -2,6 +2,8 @@ import { scene, camera, renderer, animate } from './Camera_Setup/camera_setup.js
 import { buildScene } from './Scene_Building/Object_Building.js';
 import { buildPlanet, place_on_planet } from './Scene_Building/Planet_Building.js';
 import { initiateLight } from './Lighting_and_Background/Lighting.js';
+import { buildStarfield } from './Scene_Building/Starfield.js';
+import { buildNebulae } from './Scene_Building/Nebula_Construction.js';
 
 // lights
 initiateLight("Directional");
@@ -33,6 +35,13 @@ const planetDescription = {
     color: 0x3a1812,
     texture: "rock"
 };
+
+const defaultStarField = {
+    count: 2500,
+    radius: 1000,
+    star_color: 0xffffff,
+    star_size: 3,
+}
 
 const testSceneObjects = [
     { shape: "cone", color: 0x2e1c17, position: [0.000, 5.693, 0.000], scale: [1.180, 1.685, 1.180], rotation: [0.0000, 0.0000, -0.0000], texture: "rock" },
@@ -412,5 +421,9 @@ const testSceneObjects = [
 
 buildPlanet(planetDescription);
 buildScene(testSceneObjects);
+buildStarfield(defaultStarField);
+buildNebulae({ centerX: 300, centerY: 150, centerZ: -400, baseHue: 0.7, count: 3000 , spreadX: 800, spreadY: 25, spreadZ: 25});
+buildNebulae({ centerX: -400, centerY: -100, centerZ: 200, baseHue: 0.0, count: 3000 , spreadX: 50,spreadY: 50,spreadZ: 150});
+buildNebulae({ centerX: 200, centerY: -300, centerZ: -500, baseHue: 0.5, count: 3000 , spreadX: 100,spreadY: 180,spreadZ: 40});
 
 renderer.setAnimationLoop(animate);

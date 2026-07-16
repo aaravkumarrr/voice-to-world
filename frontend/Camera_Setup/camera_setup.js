@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 // SCENE AND CAMERA OBJECT CREATION
 export const scene = new THREE.Scene();
-export const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+export const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 20000);
 
 
 
@@ -28,11 +28,12 @@ const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
 
 const resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
-const bloomPass = new UnrealBloomPass( resolution, 1.5, 0.4, 0.85 );
-composer.addPass( bloomPass );
+const bloomPass = new UnrealBloomPass( resolution, 0.7, 0.25, 0.6 );
+    composer.addPass( bloomPass );
 
 // orbit controls setting
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.maxDistance = 50;
 camera.position.set(0,3,15);
 controls.update();
 
