@@ -1,3 +1,8 @@
 to start the live server,
 
 npx serve .
+
+problems:
+
+- code is loading but canvas is blank:
+    - 
